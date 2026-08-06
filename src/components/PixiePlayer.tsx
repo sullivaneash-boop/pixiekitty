@@ -5,28 +5,70 @@ import { motion, useReducedMotion } from "motion/react";
 import { BubbleButton } from "@/components/BubbleButton";
 import { site, type Track } from "@/data/site";
 import { motionTokens } from "@/lib/motion";
+import type { MusicPreview, PlayerState } from "@/types/music";
 
 type PixiePlayerProps = {
   mode?: "hero" | "music" | "about" | "shows" | "contact";
-  playing?: boolean;
+  playerState?: PlayerState;
   progress?: number;
+  currentTime?: number;
+  duration?: number;
   track?: Track;
+  preview?: MusicPreview | null;
+  message?: string;
+  playbackPending?: boolean;
   onToggle?: () => void;
   onPrevious?: () => void;
   onNext?: () => void;
 };
 
+const STATE_LABELS: Record<PlayerState, string> = {
+  loading: "loading preview",
+  ready: "ready · press play",
+  playing: "official preview playing",
+  paused: "preview paused",
+  ended: "preview complete",
+  unavailable: "preview unavailable",
+  error: "preview temporarily unavailable",
+};
+
+function formatTime(seconds: number) {
+  if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
+  const wholeSeconds = Math.floor(seconds);
+  const minutes = Math.floor(wholeSeconds / 60);
+  return `${minutes}:${String(wholeSeconds % 60).padStart(2, "0")}`;
+}
+
 export function PixiePlayer({
   mode = "hero",
-  playing = false,
-  progress = 28,
+  playerState = "ready",
+  progress = 0,
+  currentTime = 0,
+  duration = 0,
   track = site.tracks[0],
+  preview = null,
+  message,
+  playbackPending = false,
   onToggle,
   onPrevious,
   onNext,
 }: PixiePlayerProps) {
   const reduced = useReducedMotion();
   const interactive = Boolean(onToggle);
+  const playing = playerState === "playing";
+  const playDisabled =
+    playbackPending ||
+    playerState === "loading" ||
+    playerState === "unavailable" ||
+    playerState === "error";
+  const trackName = preview?.trackName ?? track.title;
+  const artistName = preview?.artistName ?? track.artistName;
+  const collectionName = preview?.collectionName ?? site.release.title;
+  const displayDuration = duration > 0 ? duration : 30;
+  const stateLabel = message ?? STATE_LABELS[playerState];
+  const buttonLabel = playing
+    ? `Pause ${trackName} by ${artistName}`
+    : `Play ${trackName} by ${artistName}`;
 
   return (
     <motion.div
@@ -43,7 +85,7 @@ export function PixiePlayer({
         <div className="player-shell__chrome" aria-hidden="true" />
         <div className="player-brandline">
           <span>PK–01</span>
-          <span className="player-status"><i /> DREAM MODE</span>
+          <span className={`player-status ${playing ? "is-playing" : ""}`}><i /> DREAM MODE</span>
         </div>
         <div className="player-screen">
           <div className="player-screen__shine" aria-hidden="true" />
@@ -70,43 +112,69 @@ export function PixiePlayer({
             </div>
           ) : (
             <div className="screen-track">
-              <div className={`screen-orb ${playing ? "is-playing" : ""}`} aria-hidden="true">
-                <Image
-                  src={site.assetPaths.cd}
-                  alt=""
-                  width={480}
-                  height={480}
-                  preload={mode === "hero"}
-                />
+              <div
+                className={`screen-orb ${preview?.artworkUrl ? "has-artwork" : ""} ${playing ? "is-playing" : ""}`}
+              >
+                {preview?.artworkUrl ? (
+                  <Image
+                    src={preview.artworkUrl}
+                    alt={`${collectionName} album artwork`}
+                    width={600}
+                    height={600}
+                    preload={mode === "hero"}
+                  />
+                ) : (
+                  <Image
+                    src={site.assetPaths.cd}
+                    alt=""
+                    width={480}
+                    height={480}
+                    preload={mode === "hero"}
+                  />
+                )}
               </div>
               <div>
-                <span className="screen-track__type">{site.release.type}</span>
-                <strong>{track.title}</strong>
-                <span className="screen-track__note">{track.note}</span>
+                <span className="screen-track__type">{collectionName} · Apple preview</span>
+                <strong>{trackName}</strong>
+                <span className="screen-track__note">{artistName}</span>
               </div>
             </div>
           )}
-          <div className="progress" aria-label={`Silent demo progress ${Math.round(progress)} percent`}>
+          <div
+            className="progress"
+            role={interactive ? "progressbar" : undefined}
+            aria-hidden={interactive ? undefined : true}
+            aria-label={interactive ? `${trackName} preview progress` : undefined}
+            aria-valuemin={interactive ? 0 : undefined}
+            aria-valuemax={interactive ? 100 : undefined}
+            aria-valuenow={interactive ? Math.round(progress) : undefined}
+          >
             <span style={{ width: `${progress}%` }} />
           </div>
           <div className="screen-footer">
-            <span>00:{String(Math.round((progress / 100) * 18)).padStart(2, "0")}</span>
-            <span className="equalizer" aria-hidden="true"><i /><i /><i /><i /></span>
-            <span>{track.duration}</span>
+            <span>{formatTime(currentTime)}</span>
+            <span className={`equalizer ${playing ? "is-active" : ""}`} aria-hidden="true"><i /><i /><i /><i /></span>
+            <span>{formatTime(displayDuration)}</span>
           </div>
         </div>
         {interactive ? (
           <div className="player-controls">
-            <button className="skip-control" type="button" onClick={onPrevious} aria-label="Previous demo track">‹</button>
+            {onPrevious ? (
+              <button className="skip-control" type="button" onClick={onPrevious} aria-label="Previous track">‹</button>
+            ) : <span className="skip-control" aria-hidden="true">‹</span>}
             <BubbleButton
               size="large"
               active={playing}
               onClick={onToggle}
-              aria-label={playing ? "Pause silent playback demonstration" : "Play silent playback demonstration"}
+              disabled={playDisabled}
+              aria-busy={playbackPending || playerState === "loading"}
+              aria-label={buttonLabel}
             >
-              {playing ? "Ⅱ" : "▶"}
+              {playbackPending || playerState === "loading" ? "…" : playing ? "Ⅱ" : "▶"}
             </BubbleButton>
-            <button className="skip-control" type="button" onClick={onNext} aria-label="Next demo track">›</button>
+            {onNext ? (
+              <button className="skip-control" type="button" onClick={onNext} aria-label="Next track">›</button>
+            ) : <span className="skip-control" aria-hidden="true">›</span>}
           </div>
         ) : (
           <div className="player-controls player-controls--display" aria-hidden="true">
@@ -115,11 +183,19 @@ export function PixiePlayer({
             <span className="skip-control">›</span>
           </div>
         )}
-        <div className="player-caption">
-          <span>NO AUTOPLAY</span>
-          <strong>{playing ? "silent demo playing" : "press to preview"}</strong>
+        <div className="player-caption" aria-live={interactive ? "polite" : undefined}>
+          <span>{interactive ? "30 SEC PREVIEW" : "NO AUTOPLAY"}</span>
+          <strong>{interactive ? stateLabel : "display mode"}</strong>
         </div>
       </div>
+      {interactive && (
+        <div className="player-attribution">
+          <span>30-second preview · provided courtesy of iTunes</span>
+          <a href={preview?.appleMusicUrl ?? site.release.links[0].href} target="_blank" rel="noopener noreferrer">
+            Listen in full on Apple Music ↗
+          </a>
+        </div>
+      )}
       <div className="player-charm-chain" aria-hidden="true">
         <Image
           src={site.assetPaths.heartChain}

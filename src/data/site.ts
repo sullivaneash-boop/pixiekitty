@@ -1,4 +1,7 @@
+import { musicConfig } from "@/lib/music-config";
+
 export type Track = {
+  artistName: string;
   title: string;
   duration: string;
   note: string;
@@ -32,19 +35,21 @@ export const site = {
   about:
     "Pixiekitty makes dreamy pop for late nights, soft escapes, and the moment you choose yourself again.",
   release: {
-    title: "PIXIE DUST",
-    type: "current signal · demo mode",
+    title: "SUGAR RUSH",
+    type: "official Apple preview",
     year: "2026",
     links: [
-      { label: "Spotify", href: "https://open.spotify.com/" },
-      { label: "Apple Music", href: "https://music.apple.com/" },
-      { label: "SoundCloud", href: "https://soundcloud.com/" },
+      { label: "Apple Music", href: musicConfig.appleMusicAlbumUrl },
+      { label: "Spotify", href: musicConfig.spotifyArtistUrl },
     ],
   },
   tracks: [
-    { title: "Pixie Dust", duration: "03:18", note: "lead transmission" },
-    { title: "Kiss The Static", duration: "02:54", note: "after-dark mix" },
-    { title: "Crybaby Hotline", duration: "03:07", note: "unreleased preview" },
+    {
+      artistName: musicConfig.artistName,
+      title: musicConfig.preferredTrackName,
+      duration: "00:30",
+      note: "official Apple preview",
+    },
   ] satisfies Track[],
   navigation: [
     { label: "Music", href: "#music", icon: "/assets/icons/headphones-3d.webp" },

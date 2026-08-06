@@ -65,19 +65,25 @@ Shared values live in `src/lib/motion.ts`:
 - Ambient loops: `6–8s`
 - Easings: `cubic-bezier(0.22, 1, 0.36, 1)` and `cubic-bezier(0.16, 1, 0.3, 1)`
 
-Scene motion is reserved for entry and device/card reveals. Component motion covers the player, archive expansion, and ticket. Micro-motion covers bubble compression, active progress, and charm hover. Ambient drift is limited to sparkle, wand, chain, and equalizer loops. `prefers-reduced-motion` removes loops, smooth scrolling, and long transitions without hiding content.
+Scene motion is reserved for entry and device/card reveals. Component motion covers the player, archive expansion, and ticket. Micro-motion covers bubble compression, active progress, and charm hover. Ambient drift is limited to sparkle and wand loops; the equalizer, status light, and artwork glow activate only while audio is playing. `prefers-reduced-motion` removes loops, smooth scrolling, and long transitions without hiding content.
 
 ## Interaction states
 
-- Entry action: modal-style gate with immediate, keyboard-focusable entry; no audio and no loading delay.
-- Playback: clearly labeled silent demonstration with play/pause, changing progress, track selection, and no autoplay.
+- Entry action: modal-style gate with immediate, keyboard-focusable entry; it never starts audio.
+- Playback: semantic play/pause controls drive the authorized 30-second preview with real progress, accurate status copy, and no autoplay.
 - Charm navigation: semantic anchor links with labels, visible focus, and at least `44px` targets.
 - Visual archive: click/tap cards open an accessible enlarged dialog; mobile browsing works through a horizontal list.
 - Booking/social: visible `mailto:` and external links remain available without animation.
 
 ## Content and replacement points
 
-All editable content is in `src/data/site.ts`. Tracks, platform destinations, archive entries, shows, booking details, socials, and asset paths can be replaced without editing presentation components. Current songs, show data, booking address, social destinations, and archive artwork are explicitly provisional.
+Site content is in `src/data/site.ts`; the verified music identifiers and destinations are centralized in `src/lib/music-config.ts`. Archive entries, shows, booking details, socials, and asset paths can be replaced without editing presentation components. Show data, booking address, social destinations, and archive artwork remain explicitly provisional.
+
+## Official music preview
+
+Apple&apos;s iTunes Search API provides the official remote preview stream and release metadata; the Pixie Player remains the entirely original visual and interaction layer. “Pixiedust” by Pixiekitty is the configured preview track, selected only after exact artist and track validation. The route and browser both use the original Apple preview URL, and no audio file is downloaded, proxied, cached, or stored in the repository.
+
+The source can later be replaced with an authorized master or custom preview supplied by the artist. That change should preserve the same player-state contract and visible attribution requirements while updating the centralized music configuration and server lookup.
 
 ## Asset inventory
 

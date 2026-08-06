@@ -16,6 +16,7 @@ export function BubbleButton({
   active = false,
   size = "small",
   className = "",
+  disabled = false,
   ...props
 }: BubbleButtonProps) {
   const reduced = useReducedMotion();
@@ -24,9 +25,10 @@ export function BubbleButton({
     <motion.button
       type="button"
       className={`bubble-button bubble-button--${size} ${active ? "is-active" : ""} ${className}`}
-      whileHover={reduced ? undefined : { y: -2, scale: 1.025 }}
-      whileTap={reduced ? undefined : { y: 4, scale: 0.94 }}
+      whileHover={reduced || disabled ? undefined : { y: -2, scale: 1.025 }}
+      whileTap={reduced || disabled ? undefined : { y: 4, scale: 0.94 }}
       transition={motionTokens.press}
+      disabled={disabled}
       {...props}
     >
       <span>{children}</span>

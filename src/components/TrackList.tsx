@@ -1,31 +1,42 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { site } from "@/data/site";
+import type { PlayerState } from "@/types/music";
 
-export function TrackList({ active, onSelect }: { active: number; onSelect: (index: number) => void }) {
+type TrackListProps = {
+  playerState: PlayerState;
+  message: string;
+  disabled: boolean;
+  onToggle: () => void;
+};
+
+export function TrackList({ playerState, message, disabled, onToggle }: TrackListProps) {
+  const track = site.tracks[0];
+  const playing = playerState === "playing";
+  const reduced = useReducedMotion();
+
   return (
     <div className="track-list">
       <div className="track-list__head">
         <span>TRACK</span><span>TITLE / FILE</span><span>TIME</span>
       </div>
-      {site.tracks.map((track, index) => (
-        <motion.button
-          type="button"
-          className={active === index ? "is-active" : ""}
-          key={track.title}
-          onClick={() => onSelect(index)}
-          whileTap={{ x: 5 }}
-          aria-pressed={active === index}
-        >
-          <span>0{index + 1}</span>
-          <span><strong>{track.title}</strong><small>{track.note}</small></span>
-          <span>{track.duration}</span>
-        </motion.button>
-      ))}
+      <motion.button
+        type="button"
+        className="is-active"
+        onClick={onToggle}
+        whileTap={reduced || disabled ? undefined : { x: 5 }}
+        aria-pressed={playing}
+        aria-label={`${playing ? "Pause" : "Play"} ${track.title} by ${track.artistName}`}
+        disabled={disabled}
+      >
+        <span>01</span>
+        <span><strong>{track.title}</strong><small>{message}</small></span>
+        <span>{track.duration}</span>
+      </motion.button>
       <div className="platform-links" aria-label="Streaming platforms">
         {site.release.links.map((link) => (
-          <a href={link.href} target="_blank" rel="noreferrer" key={link.label}>{link.label} ↗</a>
+          <a href={link.href} target="_blank" rel="noopener noreferrer" key={link.label}>{link.label} ↗</a>
         ))}
       </div>
     </div>

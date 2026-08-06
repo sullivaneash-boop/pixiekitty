@@ -18,11 +18,15 @@ npm run lint
 npm run build
 ```
 
-The project uses Next.js App Router, React, strict TypeScript, Tailwind CSS, authored CSS custom properties, and Motion. It has no database, CMS, authentication, environment variables, or external runtime service.
+The project uses Next.js App Router, React, strict TypeScript, Tailwind CSS, authored CSS custom properties, and Motion. It has no database, CMS, authentication, or environment variables. At runtime, the server route requests the authorized preview metadata from Apple&apos;s iTunes Search API.
 
 ## Content replacement
 
-Edit `src/data/site.ts` to replace provisional tracks, streaming destinations, visual archive entries, shows, booking details, and social links. The current media player is a silent demonstration because no licensed audio was supplied; it never autoplays.
+Edit `src/data/site.ts` to replace provisional visual archive entries, shows, booking details, and social links. Music identifiers and official destinations live in `src/lib/music-config.ts`. The custom player streams Apple&apos;s official 30-second preview of “Pixiedust” only after a user presses play; the audio is never downloaded or stored in this repository.
+
+## Music preview flow
+
+`GET /api/music-preview` checks the configured Sugar Rush album through Apple&apos;s iTunes Search API, validates the artist and track names, and returns only the original remote preview URL plus the metadata needed by the custom player. If the album lookup has no valid match, the route safely tries the configured search fallback. Both upstream and route responses use `no-store`.
 
 ## Vercel deployment
 

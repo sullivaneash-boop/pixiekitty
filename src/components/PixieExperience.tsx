@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { AboutReveal } from "@/components/AboutReveal";
 import { CharmNav } from "@/components/CharmNav";
 import { EntryGate } from "@/components/EntryGate";
@@ -12,13 +12,22 @@ import { SparkleField } from "@/components/SparkleField";
 import { TrackList } from "@/components/TrackList";
 import { VisualArchive } from "@/components/VisualArchive";
 import { site } from "@/data/site";
+import { useMusicPreview } from "@/hooks/useMusicPreview";
 import { motionTokens } from "@/lib/motion";
 
 export function PixieExperience() {
   const [entered, setEntered] = useState(false);
-  const [playing, setPlaying] = useState(false);
-  const [progress, setProgress] = useState(28);
-  const [trackIndex, setTrackIndex] = useState(0);
+  const {
+    audioRef,
+    preview,
+    playerState,
+    currentTime,
+    duration,
+    progress,
+    playRequestPending,
+    message,
+    togglePlayback,
+  } = useMusicPreview();
   const reduced = useReducedMotion();
 
   useEffect(() => {
@@ -26,35 +35,27 @@ export function PixieExperience() {
     return () => { document.body.style.overflow = ""; };
   }, [entered]);
 
-  useEffect(() => {
-    if (!playing) return;
-    const timer = window.setInterval(() => {
-      setProgress((value) => (value >= 100 ? 0 : value + 0.35));
-    }, 120);
-    const stopWhenHidden = () => {
-      if (document.hidden) setPlaying(false);
-    };
-    document.addEventListener("visibilitychange", stopWhenHidden);
-    return () => {
-      window.clearInterval(timer);
-      document.removeEventListener("visibilitychange", stopWhenHidden);
-    };
-  }, [playing]);
+  const handlePlaybackToggle = useCallback(() => {
+    void togglePlayback();
+  }, [togglePlayback]);
 
-  const selectTrack = (index: number) => {
-    setTrackIndex(index);
-    setProgress(0);
-    setPlaying(true);
-  };
-
-  const stepTrack = (direction: -1 | 1) => {
-    setTrackIndex((current) => (current + direction + site.tracks.length) % site.tracks.length);
-    setProgress(0);
-  };
+  const playbackDisabled =
+    playRequestPending ||
+    playerState === "loading" ||
+    playerState === "unavailable" ||
+    playerState === "error";
 
   return (
     <>
       <AnimatePresence>{!entered && <EntryGate onEnter={() => setEntered(true)} />}</AnimatePresence>
+      <audio
+        ref={audioRef}
+        className="preview-audio"
+        src={preview?.previewUrl}
+        preload="metadata"
+        controlsList="nodownload"
+        aria-hidden="true"
+      />
       <main id="top">
         <section className="hero-act" aria-labelledby="hero-title">
           <SparkleField />
@@ -84,12 +85,15 @@ export function PixieExperience() {
             </div>
             <PixiePlayer
               mode="hero"
-              playing={playing}
+              playerState={playerState}
               progress={progress}
-              track={site.tracks[trackIndex]}
-              onToggle={() => setPlaying((value) => !value)}
-              onPrevious={() => stepTrack(-1)}
-              onNext={() => stepTrack(1)}
+              currentTime={currentTime}
+              duration={duration}
+              track={site.tracks[0]}
+              preview={preview}
+              message={message}
+              playbackPending={playRequestPending}
+              onToggle={handlePlaybackToggle}
             />
             <div className="hero-note hero-note--right">
               <span>CURRENT SIGNAL</span><strong>{site.release.title}</strong><small>{site.release.type}</small>
@@ -109,17 +113,25 @@ export function PixieExperience() {
               <p className="ui-label">the player found a heartbeat</p>
               <h2 id="music-title">PRESS<br /><em>PLAY.</em></h2>
               <p>{site.tagline}</p>
-              <TrackList active={trackIndex} onSelect={selectTrack} />
+              <TrackList
+                playerState={playerState}
+                message={message}
+                disabled={playbackDisabled}
+                onToggle={handlePlaybackToggle}
+              />
             </div>
             <div className="music-device">
               <PixiePlayer
                 mode="music"
-                playing={playing}
+                playerState={playerState}
                 progress={progress}
-                track={site.tracks[trackIndex]}
-                onToggle={() => setPlaying((value) => !value)}
-                onPrevious={() => stepTrack(-1)}
-                onNext={() => stepTrack(1)}
+                currentTime={currentTime}
+                duration={duration}
+                track={site.tracks[0]}
+                preview={preview}
+                message={message}
+                playbackPending={playRequestPending}
+                onToggle={handlePlaybackToggle}
               />
               <Image className="music-wand" src={site.assetPaths.wand} alt="" width={180} height={180} />
             </div>
