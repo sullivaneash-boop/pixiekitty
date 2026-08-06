@@ -8,12 +8,13 @@ import { motionTokens } from "@/lib/motion";
 
 function ArchiveArtwork({ entry, expanded = false }: { entry: ArchiveEntry; expanded?: boolean }) {
   return (
-    <div className={`archive-art archive-art--${entry.variant} ${expanded ? "is-expanded" : ""}`}>
-      <div className="archive-art__orb" />
-      <div className="archive-art__scanlines" />
-      <Image src={entry.icon} alt="" width={480} height={480} />
-      <span className="archive-art__index">{entry.id}.pxi</span>
-      <strong>{entry.title}</strong>
+    <div className={`archive-art ${expanded ? "is-expanded" : ""}`}>
+      <Image
+        src={entry.image}
+        alt={entry.alt}
+        fill
+        sizes={expanded ? "(max-width: 820px) 90vw, 760px" : "(max-width: 640px) 78vw, (max-width: 1180px) 50vw, 33vw"}
+      />
     </div>
   );
 }
@@ -41,7 +42,7 @@ export function VisualArchive() {
         </div>
         <p>
           A growing collection of looks, late nights and moments from Pixie&apos;s world.
-          <strong>TAP A FILE TO OPEN</strong>
+          <strong>TAP A PHOTO TO OPEN</strong>
         </p>
       </div>
       <div className="archive-stack">
@@ -56,10 +57,9 @@ export function VisualArchive() {
             whileHover={reduced ? undefined : { y: -14, rotate: 0, zIndex: 5 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ ...motionTokens.component, delay: index * 0.08 }}
-            aria-label={`Expand ${entry.title}`}
+            aria-label={`Expand archive photo ${index + 1}`}
           >
             <ArchiveArtwork entry={entry} />
-            <span className="archive-card__caption"><b>{entry.title}</b>{entry.caption}</span>
           </motion.button>
         ))}
       </div>
@@ -69,7 +69,7 @@ export function VisualArchive() {
             className="archive-modal"
             role="dialog"
             aria-modal="true"
-            aria-label={`${selected.title} expanded artwork`}
+            aria-label="Expanded archive photo"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -85,7 +85,6 @@ export function VisualArchive() {
             >
               <button type="button" onClick={() => setSelected(null)} aria-label="Close expanded artwork" autoFocus>CLOSE ×</button>
               <ArchiveArtwork entry={selected} expanded />
-              <p>{selected.caption}</p>
             </motion.div>
           </motion.div>
         )}

@@ -9,10 +9,8 @@ export type Track = {
 
 export type ArchiveEntry = {
   id: string;
-  title: string;
-  caption: string;
-  variant: "halo" | "heartbreak" | "night" | "signal";
-  icon: string;
+  image: string;
+  alt: string;
 };
 
 export const site = {
@@ -58,32 +56,19 @@ export const site = {
   ],
   archive: [
     {
-      id: "after-dark",
-      title: "AFTER DARK",
-      caption: "late-night looks",
-      variant: "halo",
-      icon: "/assets/icons/butterfly-3d.webp",
+      id: "archive-01",
+      image: "/assets/archive/pixiekitty-archive-01.png",
+      alt: "Portrait beside illuminated bookshelves",
     },
     {
-      id: "pink-room",
-      title: "PINK ROOM",
-      caption: "all dressed up",
-      variant: "heartbreak",
-      icon: "/assets/icons/pixel-heart-3d.webp",
+      id: "archive-02",
+      image: "/assets/archive/pixiekitty-archive-02.png",
+      alt: "Portrait in a pink outfit on a bed",
     },
     {
-      id: "soft-focus",
-      title: "SOFT FOCUS",
-      caption: "pretty in a blur",
-      variant: "night",
-      icon: "/assets/icons/lips-3d.webp",
-    },
-    {
-      id: "sugar-rush",
-      title: "SUGAR RUSH",
-      caption: "sweet with an edge",
-      variant: "signal",
-      icon: "/assets/icons/burst-3d.webp",
+      id: "archive-03",
+      image: "/assets/archive/pixiekitty-archive-03.png",
+      alt: "Friends in colorful outfits sitting on laundry machines",
     },
   ] satisfies ArchiveEntry[],
   live: {
