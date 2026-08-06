@@ -77,7 +77,6 @@ a,
 .screen-footer,
 .hero-note span,
 .track-list,
-.entry-gate__note,
 .replace-note {
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
@@ -159,13 +158,6 @@ a,
   max-width: 34ch;
   color: var(--soft-pink);
   font-size: clamp(1rem, 2vw, 1.35rem);
-}
-
-.entry-gate__note {
-  display: block;
-  margin-top: 1.4rem;
-  color: rgba(255, 248, 252, 0.55);
-  font-size: 0.58rem;
 }
 
 .bubble-button {

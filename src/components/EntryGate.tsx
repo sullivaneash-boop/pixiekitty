@@ -26,7 +26,6 @@ export function EntryGate({ onEnter }: { onEnter: () => void }) {
         <BubbleButton size="large" onClick={onEnter} autoFocus aria-label="Enter Pixie Mode">
           ENTER PIXIE MODE
         </BubbleButton>
-        <span className="entry-gate__note">sound stays off · no surprises</span>
       </div>
     </motion.div>
   );
