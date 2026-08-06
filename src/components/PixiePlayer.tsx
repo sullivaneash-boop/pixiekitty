@@ -90,11 +90,7 @@ export function PixiePlayer({
       viewport={{ once: true, amount: 0.25 }}
       transition={motionTokens.scene}
     >
-      <div className="player-antenna" aria-hidden="true">
-        <span />
-      </div>
       <div className="player-shell">
-        <div className="player-shell__chrome" aria-hidden="true" />
         <div className="player-brandline">
           <span>PK–01</span>
           <span className={`player-status ${playing ? "is-playing" : ""}`}><i /> DREAM MODE</span>
