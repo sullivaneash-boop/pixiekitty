@@ -65,7 +65,7 @@ Shared values live in `src/lib/motion.ts`:
 - Ambient loops: `6–8s`
 - Easings: `cubic-bezier(0.22, 1, 0.36, 1)` and `cubic-bezier(0.16, 1, 0.3, 1)`
 
-Scene motion is reserved for entry and device/card reveals. Component motion covers the player, archive expansion, and ticket. Micro-motion covers bubble compression, active progress, and charm hover. Ambient drift is limited to sparkle and wand loops; the equalizer, status light, and artwork glow activate only while audio is playing. `prefers-reduced-motion` removes loops, smooth scrolling, and long transitions without hiding content.
+Scene motion is reserved for entry and device/card reveals. Component motion covers the player, archive expansion, and ticket. Micro-motion covers bubble compression, active progress, and charm hover. Ambient drift is limited to sparkle loops; the equalizer, status light, and artwork glow activate only while audio is playing. `prefers-reduced-motion` removes loops, smooth scrolling, and long transitions without hiding content.
 
 ## Interaction states
 

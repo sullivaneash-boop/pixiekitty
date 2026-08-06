@@ -16,14 +16,12 @@ Supplied originals were inspected from `/Users/sullyeash/Downloads` and were not
 
 ## Production derivatives
 
-The 12 revised 3D icon artboards were rendered at their original square composition, converted to transparent WebP, and stored in `public/assets/icons/`. These files preserve the supplied artwork while keeping the large `.ai` source out of the client bundle. The heart-in-chain artwork is exported and displayed by itself, without CSS extensions, overlays, shadows, or added decoration.
+The active revised 3D icon artboards were rendered at their original square composition, converted to transparent WebP, and stored in `public/assets/icons/`. These files preserve the supplied artwork while keeping the large `.ai` source out of the client bundle.
 
 | Production path | Use |
 | --- | --- |
 | `public/assets/icons/bow-3d.webp` | About compact decoration |
-| `public/assets/icons/wand-3d.webp` | Entry and music scene decoration |
 | `public/assets/icons/burst-3d.webp` | Signal Bloom archive art |
-| `public/assets/icons/heart-chain-3d.webp` | Player charm chain; displayed without added styling or artwork |
 | `public/assets/icons/sparkles-3d.webp` | Available environmental motif |
 | `public/assets/icons/pixel-star-3d.webp` | Shows navigation charm |
 | `public/assets/icons/folder-3d.webp` | Visual archive navigation charm |

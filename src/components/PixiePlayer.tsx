@@ -196,15 +196,6 @@ export function PixiePlayer({
           </a>
         </div>
       )}
-      <div className="player-charm-chain" aria-hidden="true">
-        <Image
-          src={site.assetPaths.heartChain}
-          alt=""
-          width={480}
-          height={480}
-          preload={mode === "hero"}
-        />
-      </div>
     </motion.div>
   );
 }

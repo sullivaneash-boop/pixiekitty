@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useCallback, useEffect, useState } from "react";
 import { AboutReveal } from "@/components/AboutReveal";
@@ -133,7 +132,6 @@ export function PixieExperience() {
                 playbackPending={playRequestPending}
                 onToggle={handlePlaybackToggle}
               />
-              <Image className="music-wand" src={site.assetPaths.wand} alt="" width={180} height={180} />
             </div>
           </div>
         </section>

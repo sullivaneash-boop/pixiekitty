@@ -109,9 +109,7 @@ export const site = {
   ],
   assetPaths: {
     bow: "/assets/icons/bow-3d.webp",
-    wand: "/assets/icons/wand-3d.webp",
     sparkles: "/assets/icons/sparkles-3d.webp",
-    heartChain: "/assets/icons/heart-chain-3d.webp",
     butterfly: "/assets/icons/butterfly-3d.webp",
     cd: "/assets/icons/cd-3d.webp",
     lips: "/assets/icons/lips-3d.webp",

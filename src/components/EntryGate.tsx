@@ -1,9 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { BubbleButton } from "@/components/BubbleButton";
-import { site } from "@/data/site";
 import { motionTokens } from "@/lib/motion";
 
 export function EntryGate({ onEnter }: { onEnter: () => void }) {
@@ -21,14 +19,6 @@ export function EntryGate({ onEnter }: { onEnter: () => void }) {
       transition={motionTokens.scene}
     >
       <div className="entry-gate__noise" aria-hidden="true" />
-      <Image
-        className="entry-gate__wand"
-        src={site.assetPaths.wand}
-        alt=""
-        width={210}
-        height={210}
-        preload
-      />
       <div className="entry-gate__copy">
         <p className="ui-label">incoming transmission</p>
         <h2 id="entry-title">PIXIEKITTY</h2>
