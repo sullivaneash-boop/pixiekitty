@@ -41,7 +41,7 @@ export function LiveConnect() {
 
       <section className="act contact-act" id="contact" aria-labelledby="contact-title">
         <div className="contact-glow" aria-hidden="true" />
-        <Image className="contact-lips" src={site.assetPaths.lips} alt="" width={480} height={257} />
+        <Image className="contact-lips" src={site.assetPaths.lips} alt="" width={480} height={480} />
         <div className="contact-grid">
           <PixiePlayer mode="contact" />
           <div className="contact-copy">

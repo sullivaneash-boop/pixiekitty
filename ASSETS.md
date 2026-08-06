@@ -16,21 +16,21 @@ Supplied originals were inspected from `/Users/sullyeash/Downloads` and were not
 
 ## Production derivatives
 
-The 12 icon pages were rendered, trimmed, converted to transparent WebP, and stored in `public/assets/icons/`. These files preserve the supplied artwork while keeping the large `.ai` source out of the client bundle.
+The 12 revised 3D icon artboards were rendered at their original square composition, converted to transparent WebP, and stored in `public/assets/icons/`. These files preserve the supplied artwork while keeping the large `.ai` source out of the client bundle. The heart-in-chain artwork is exported and displayed by itself, without CSS extensions, overlays, shadows, or added decoration.
 
 | Production path | Use |
 | --- | --- |
-| `public/assets/icons/bow.webp` | About compact decoration |
-| `public/assets/icons/wand.webp` | Entry and music scene decoration |
-| `public/assets/icons/burst.webp` | Signal Bloom archive art |
-| `public/assets/icons/heart-chain.webp` | Player charm chain |
-| `public/assets/icons/sparkles.webp` | Available environmental motif |
-| `public/assets/icons/pixel-star.webp` | Shows navigation charm |
-| `public/assets/icons/folder.webp` | Visual archive navigation charm |
-| `public/assets/icons/butterfly.webp` | Halo Test archive art |
-| `public/assets/icons/headphones.webp` | Music navigation charm |
-| `public/assets/icons/cd.webp` | Player screen record artwork |
-| `public/assets/icons/lips.webp` | Contact charm and scene decoration |
-| `public/assets/icons/pixel-heart.webp` | About charm, archive art, app icon |
+| `public/assets/icons/bow-3d.webp` | About compact decoration |
+| `public/assets/icons/wand-3d.webp` | Entry and music scene decoration |
+| `public/assets/icons/burst-3d.webp` | Signal Bloom archive art |
+| `public/assets/icons/heart-chain-3d.webp` | Player charm chain; displayed without added styling or artwork |
+| `public/assets/icons/sparkles-3d.webp` | Available environmental motif |
+| `public/assets/icons/pixel-star-3d.webp` | Shows navigation charm |
+| `public/assets/icons/folder-3d.webp` | Visual archive navigation charm |
+| `public/assets/icons/butterfly-3d.webp` | Halo Test archive art |
+| `public/assets/icons/headphones-3d.webp` | Music navigation charm |
+| `public/assets/icons/cd-3d.webp` | Player screen record artwork |
+| `public/assets/icons/lips-3d.webp` | Contact charm and scene decoration |
+| `public/assets/icons/pixel-heart-3d.webp` | About charm, archive art, app icon |
 
 No third-party photography or downloaded artist imagery is shipped. The visual archive intentionally uses abstract, CSS-authored placeholders until licensed artist media is supplied.

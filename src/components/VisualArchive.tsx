@@ -7,18 +7,11 @@ import { site, type ArchiveEntry } from "@/data/site";
 import { motionTokens } from "@/lib/motion";
 
 function ArchiveArtwork({ entry, expanded = false }: { entry: ArchiveEntry; expanded?: boolean }) {
-  const dimensions = {
-    halo: { width: 480, height: 442 },
-    heartbreak: { width: 480, height: 393 },
-    night: { width: 480, height: 257 },
-    signal: { width: 478, height: 480 },
-  }[entry.variant];
-
   return (
     <div className={`archive-art archive-art--${entry.variant} ${expanded ? "is-expanded" : ""}`}>
       <div className="archive-art__orb" />
       <div className="archive-art__scanlines" />
-      <Image src={entry.icon} alt="" width={dimensions.width} height={dimensions.height} />
+      <Image src={entry.icon} alt="" width={480} height={480} />
       <span className="archive-art__index">{entry.id}.pxi</span>
       <strong>{entry.title}</strong>
     </div>

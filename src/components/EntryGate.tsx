@@ -27,7 +27,7 @@ export function EntryGate({ onEnter }: { onEnter: () => void }) {
         alt=""
         width={210}
         height={210}
-        priority
+        preload
       />
       <div className="entry-gate__copy">
         <p className="ui-label">incoming transmission</p>

@@ -715,27 +715,15 @@ a,
 
 .player-charm-chain {
   position: absolute;
-  top: 60%;
+  top: 76%;
   right: -18%;
   z-index: 5;
   width: 22%;
-  transform-origin: top center;
-  animation: chain-sway 7s ease-in-out infinite;
-}
-
-.player-charm-chain span {
-  display: block;
-  width: 4px;
-  height: clamp(52px, 8vw, 100px);
-  margin: 0 auto -3px;
-  border-radius: 99px;
-  background: repeating-linear-gradient(to bottom, #fff 0 5px, #8d8e9a 5px 10px);
 }
 
 .player-charm-chain img {
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 12px 14px rgba(0,0,0,.32));
 }
 
 .charm-nav {
@@ -1618,11 +1606,6 @@ a,
   50% { opacity: 1; transform: scale(1.5) rotate(90deg); }
 }
 
-@keyframes chain-sway {
-  0%, 100% { transform: rotate(-4deg); }
-  50% { transform: rotate(5deg); }
-}
-
 @keyframes disc-spin { to { transform: rotate(360deg); } }
 
 @keyframes equalize {
@@ -1853,7 +1836,7 @@ a,
   }
 
   .player-charm-chain {
-    right: -9%;
+    right: -2%;
   }
 
   .act {

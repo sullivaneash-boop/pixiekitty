@@ -75,7 +75,7 @@ export function PixiePlayer({
                   src={site.assetPaths.cd}
                   alt=""
                   width={480}
-                  height={473}
+                  height={480}
                   preload={mode === "hero"}
                 />
               </div>
@@ -121,7 +121,6 @@ export function PixiePlayer({
         </div>
       </div>
       <div className="player-charm-chain" aria-hidden="true">
-        <span />
         <Image
           src={site.assetPaths.heartChain}
           alt=""
