@@ -945,6 +945,11 @@ a,
   font-size: clamp(1.05rem, 1.7vw, 1.5rem);
 }
 
+.music-copy h2 {
+  font-size: clamp(3.2rem, 5vw, 5.5rem);
+  line-height: .82;
+}
+
 .music-device .pixie-player {
   --player-width: min(37vw, 520px);
 }
@@ -1157,12 +1162,31 @@ a,
   -webkit-text-stroke: 0;
 }
 
+.archive-heading .ui-label {
+  margin: 1.4rem 0 -.2rem;
+  color: var(--hot-pink);
+  font-size: .58rem;
+}
+
+.archive-heading h2 {
+  font-size: clamp(3.5rem, 7.4vw, 7rem);
+}
+
 .archive-heading > p {
   max-width: 38ch;
   margin-bottom: 1.3rem;
   color: rgba(23,7,16,.64);
   font-size: 0.9rem;
   line-height: 1.65;
+}
+
+.archive-heading > p strong {
+  display: block;
+  margin-top: 1rem;
+  color: var(--hot-pink);
+  font-family: var(--font-mono), monospace;
+  font-size: .55rem;
+  letter-spacing: .08em;
 }
 
 .archive-stack {
@@ -1367,6 +1391,11 @@ a,
   font-size: .62rem;
 }
 
+.shows-copy__note {
+  max-width: 32ch;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+}
+
 .shows-grid .pixie-player {
   --player-width: min(35vw, 500px);
 }
@@ -1513,8 +1542,15 @@ a,
   color: var(--cyan);
 }
 
+.contact-copy .ui-label {
+  margin: 1.5rem 0 -.5rem;
+  color: var(--soft-pink);
+  font-size: .58rem;
+}
+
 .contact-copy h2 {
   color: var(--candy-pink);
+  font-size: clamp(3.2rem, 5.2vw, 5.8rem);
 }
 
 .contact-copy h2 em {
@@ -1564,13 +1600,6 @@ a,
   grid-column: 2;
   align-self: center;
   font-size: 2rem;
-}
-
-.replace-note {
-  display: block;
-  margin-top: .7rem;
-  color: rgba(255,248,252,.4);
-  font-size: .48rem;
 }
 
 .social-links {
@@ -1876,6 +1905,13 @@ a,
 
   .act h2 {
     font-size: clamp(3.6rem, 17vw, 5.5rem);
+  }
+
+  .music-copy h2,
+  .about-copy h2,
+  .archive-heading h2,
+  .contact-copy h2 {
+    font-size: clamp(2.9rem, 12vw, 4rem);
   }
 
   .music-grid,

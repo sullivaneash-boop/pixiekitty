@@ -18,8 +18,8 @@ export function AboutReveal() {
           <Image className="about-bow" src={site.assetPaths.bow} alt="" width={190} height={145} />
         </div>
         <div className="about-copy">
-          <p className="ui-label">compact opened · feelings detected</p>
-          <h2 id="about-title">SWEET<br />ESCAPE,<br /><em>SHARP EDGE.</em></h2>
+          <p className="ui-label">MEET PIXIE</p>
+          <h2 id="about-title">SWEET ESCAPE.<br /><em>SHARP EDGE.</em></h2>
           <p className="about-copy__statement">{site.about}</p>
           <div className="system-messages">
             {site.statement.map((line, index) => (

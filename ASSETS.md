@@ -21,7 +21,7 @@ The active revised 3D icon artboards were rendered at their original square comp
 | Production path | Use |
 | --- | --- |
 | `public/assets/icons/bow-3d.webp` | About compact decoration |
-| `public/assets/icons/burst-3d.webp` | Signal Bloom archive art |
+| `public/assets/icons/burst-3d.webp` | Sugar Rush archive art |
 | `public/assets/icons/sparkles-3d.webp` | Available environmental motif |
 | `public/assets/icons/pixel-star-3d.webp` | Shows navigation charm |
 | `public/assets/icons/folder-3d.webp` | Visual archive navigation charm |
@@ -31,4 +31,4 @@ The active revised 3D icon artboards were rendered at their original square comp
 | `public/assets/icons/lips-3d.webp` | Contact charm and scene decoration |
 | `public/assets/icons/pixel-heart-3d.webp` | About charm, archive art, app icon |
 
-No third-party photography or downloaded artist imagery is shipped. The visual archive intentionally uses abstract, CSS-authored placeholders until licensed artist media is supplied.
+No third-party photography or downloaded artist imagery is shipped. The visual archive currently uses abstract, CSS-authored artwork until licensed artist media is supplied.

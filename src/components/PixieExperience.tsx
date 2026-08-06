@@ -62,7 +62,7 @@ export function PixieExperience() {
           <div className="hero-cloud hero-cloud--two" aria-hidden="true" />
           <header className="signal-header">
             <a className="signal-logo" href="#top" aria-label="Pixiekitty home">PK<span>✦</span></a>
-            <span>TRANSMISSION 001</span>
+            <span>PIXIEKITTY IS ONLINE</span>
             <a href="#contact">BOOKING ↗</a>
           </header>
           <div className="hero-title-wrap">
@@ -80,7 +80,8 @@ export function PixieExperience() {
           </div>
           <div className="hero-stage">
             <div className="hero-note hero-note--left">
-              <span>MADE FOR</span><strong>late nights +<br />soft escapes</strong>
+              <span>{site.positioning[0]}</span>
+              <strong>{site.positioning[1]}<br />{site.positioning[2]}<br />{site.positioning[3]}</strong>
             </div>
             <PixiePlayer
               mode="hero"
@@ -95,26 +96,25 @@ export function PixieExperience() {
               onToggle={handlePlaybackToggle}
             />
             <div className="hero-note hero-note--right">
-              <span>CURRENT SIGNAL</span><strong>{site.release.title}</strong><small>{site.release.type}</small>
+              <span>NOW PLAYING</span><strong>{site.tracks[0].title}</strong><small>{site.tracks[0].album} · {site.tracks[0].duration}</small>
             </div>
           </div>
           <CharmNav />
-          <div className="hero-scroll" aria-hidden="true"><span>SCROLL TO UNFOLD</span><i /></div>
+          <div className="hero-scroll" aria-hidden="true"><span>SCROLL INTO PIXIE&apos;S WORLD</span><i /></div>
         </section>
 
         <section className="act music-act" id="music" aria-labelledby="music-title">
           <div className="music-marquee" aria-hidden="true">
             <span>PLAY IT LOUDER ✦ PLAY IT LOUDER ✦ PLAY IT LOUDER ✦ PLAY IT LOUDER ✦</span>
           </div>
-          <div className="act-label"><span>02</span> MUSIC PLAYER</div>
+          <div className="act-label"><span>02</span> MUSIC</div>
           <div className="music-grid">
             <div className="music-copy">
-              <p className="ui-label">the player found a heartbeat</p>
-              <h2 id="music-title">PRESS<br /><em>PLAY.</em></h2>
+              <p className="ui-label">THE PIXIE PLAYER</p>
+              <h2 id="music-title">PRESS PLAY.<br /><em>DISAPPEAR<br />FOR A MINUTE.</em></h2>
               <p>{site.tagline}</p>
               <TrackList
                 playerState={playerState}
-                message={message}
                 disabled={playbackDisabled}
                 onToggle={handlePlaybackToggle}
               />

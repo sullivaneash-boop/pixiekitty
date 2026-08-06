@@ -36,9 +36,13 @@ export function VisualArchive() {
       <div className="archive-heading">
         <div>
           <div className="act-label"><span>04</span> VISUAL ARCHIVE</div>
-          <h2 id="visuals-title">OPEN THE<br /><em>PIXIE FILES.</em></h2>
+          <p className="ui-label">THE PIXIE FILES</p>
+          <h2 id="visuals-title">OPEN THE<br /><em>PRETTY LITTLE<br />ARCHIVE.</em></h2>
         </div>
-        <p>Four abstract placeholders keep the world intact until final artist imagery arrives. Tap any file to expand it.</p>
+        <p>
+          A growing collection of looks, late nights and moments from Pixie&apos;s world.
+          <strong>TAP A FILE TO OPEN</strong>
+        </p>
       </div>
       <div className="archive-stack">
         {site.archive.map((entry, index) => (
@@ -81,7 +85,7 @@ export function VisualArchive() {
             >
               <button type="button" onClick={() => setSelected(null)} aria-label="Close expanded artwork" autoFocus>CLOSE ×</button>
               <ArchiveArtwork entry={selected} expanded />
-              <p>{selected.caption} · abstract replacement point for licensed artist media</p>
+              <p>{selected.caption}</p>
             </motion.div>
           </motion.div>
         )}

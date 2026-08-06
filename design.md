@@ -27,7 +27,7 @@ Lazyweb evidence was used before implementation. Familiar playback controls came
 | Acid lime | `#B6FF3B` | Active playback, focus, rare status signal |
 | Digital cyan | `#78EFFF` | Metadata, status labels, tiny system moments |
 
-No unrelated accent gradients are used. Gradients only simulate plastic, chrome, black glass, atmosphere, or the four abstract archive placeholders.
+No unrelated accent gradients are used. Gradients only simulate plastic, chrome, black glass, atmosphere, or the four abstract archive artworks.
 
 ## Typography
 
@@ -45,7 +45,7 @@ Three open-source Google font families are self-hosted through `next/font`:
 - **Black glass:** plum-black gradient, cyan metadata, magenta inner bloom, diagonal reflected sheen.
 - **Bubble control:** inflated gradient, top specular highlight, darker underside, `8px` contact shadow, compressed press state.
 - **Rhinestone signal:** tiny white/cyan status gem with restrained glow.
-- **Holographic signal:** only the Signal Bloom archive placeholder combines lime, pink, and cyan.
+- **Holographic accent:** only the Sugar Rush archive artwork combines lime, pink, and cyan.
 
 ## Layout and responsive behavior
 
@@ -77,7 +77,7 @@ Scene motion is reserved for entry and device/card reveals. Component motion cov
 
 ## Content and replacement points
 
-Site content is in `src/data/site.ts`; the verified music identifiers and destinations are centralized in `src/lib/music-config.ts`. Archive entries, shows, booking details, socials, and asset paths can be replaced without editing presentation components. Show data, booking address, social destinations, and archive artwork remain explicitly provisional.
+Site content is in `src/data/site.ts`; the verified music identifiers and destinations are centralized in `src/lib/music-config.ts`. Archive entries, live-status copy, booking details, socials, and asset paths can be replaced without editing presentation components. Client-facing copy never exposes internal replacement notes or unverified show information.
 
 ## Official music preview
 

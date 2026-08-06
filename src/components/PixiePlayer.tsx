@@ -23,13 +23,13 @@ type PixiePlayerProps = {
 };
 
 const STATE_LABELS: Record<PlayerState, string> = {
-  loading: "loading preview",
-  ready: "ready · press play",
-  playing: "official preview playing",
-  paused: "preview paused",
-  ended: "preview complete",
-  unavailable: "preview unavailable",
-  error: "preview temporarily unavailable",
+  loading: "LOADING PREVIEW",
+  ready: "PRESS PLAY TO PREVIEW",
+  playing: "PREVIEW PLAYING",
+  paused: "PREVIEW PAUSED",
+  ended: "PREVIEW COMPLETE",
+  unavailable: "PREVIEW UNAVAILABLE",
+  error: "PREVIEW TEMPORARILY UNAVAILABLE",
 };
 
 function formatTime(seconds: number) {
@@ -37,6 +37,10 @@ function formatTime(seconds: number) {
   const wholeSeconds = Math.floor(seconds);
   const minutes = Math.floor(wholeSeconds / 60);
   return `${minutes}:${String(wholeSeconds % 60).padStart(2, "0")}`;
+}
+
+function formatPreviewTime(seconds: number) {
+  return formatTime(seconds).padStart(5, "0");
 }
 
 export function PixiePlayer({
@@ -65,7 +69,15 @@ export function PixiePlayer({
   const artistName = preview?.artistName ?? track.artistName;
   const collectionName = preview?.collectionName ?? site.release.title;
   const displayDuration = duration > 0 ? duration : 30;
-  const stateLabel = message ?? STATE_LABELS[playerState];
+  const stateLabel = playerState === "ready" ? STATE_LABELS.ready : message ?? STATE_LABELS[playerState];
+  const screenLabel =
+    mode === "about"
+      ? "MEET PIXIE"
+      : mode === "shows"
+        ? "LIVE"
+        : mode === "contact"
+          ? "BOOK PIXIE"
+          : "NOW PLAYING";
   const buttonLabel = playing
     ? `Pause ${trackName} by ${artistName}`
     : `Play ${trackName} by ${artistName}`;
@@ -90,25 +102,25 @@ export function PixiePlayer({
         <div className="player-screen">
           <div className="player-screen__shine" aria-hidden="true" />
           <div className="screen-topline">
-            <span>{mode === "about" ? "WHO.IS.SHE" : mode === "contact" ? "PIXIE-LINE" : "NOW GLOWING"}</span>
-            <span>{site.release.year}</span>
+            <span>{screenLabel}</span>
+            <span>{site.year}</span>
           </div>
           {mode === "about" ? (
             <div className="screen-about">
               <span className="screen-about__cursor">&gt;</span>
-              <p>{site.about}</p>
+              <p>SWEET ESCAPE.<br />SHARP EDGE.</p>
             </div>
           ) : mode === "shows" ? (
             <div className="screen-ticket">
               <span>ADMIT ONE DREAMER</span>
-              <strong>LIVE SIGNAL</strong>
-              <small>dates loading...</small>
+              <strong>PIXIEKITTY</strong>
+              <small>DATES COMING SOON</small>
             </div>
           ) : mode === "contact" ? (
             <div className="screen-message">
-              <span>new message</span>
-              <strong>let&apos;s make magic?</strong>
-              <small>booking + collaborations</small>
+              <span>NEW MESSAGE</span>
+              <strong>BOOKING + COLLABORATIONS</strong>
+              <small>{site.contact.email}</small>
             </div>
           ) : (
             <div className="screen-track">
@@ -134,9 +146,9 @@ export function PixiePlayer({
                 )}
               </div>
               <div>
-                <span className="screen-track__type">{collectionName} · Apple preview</span>
+                <span className="screen-track__type">{artistName}</span>
                 <strong>{trackName}</strong>
-                <span className="screen-track__note">{artistName}</span>
+                <span className="screen-track__note">{collectionName} · {track.duration}</span>
               </div>
             </div>
           )}
@@ -184,8 +196,8 @@ export function PixiePlayer({
           </div>
         )}
         <div className="player-caption" aria-live={interactive ? "polite" : undefined}>
-          <span>{interactive ? "30 SEC PREVIEW" : "NO AUTOPLAY"}</span>
-          <strong>{interactive ? stateLabel : "display mode"}</strong>
+          <span>{interactive ? `${formatPreviewTime(currentTime)} / ${formatPreviewTime(displayDuration)} PREVIEW` : "PIXIE MODE"}</span>
+          <strong>{interactive ? stateLabel : "DREAM MODE"}</strong>
         </div>
       </div>
       {interactive && (

@@ -20,11 +20,11 @@ export function EntryGate({ onEnter }: { onEnter: () => void }) {
     >
       <div className="entry-gate__noise" aria-hidden="true" />
       <div className="entry-gate__copy">
-        <p className="ui-label">incoming transmission</p>
+        <p className="ui-label">PIXIEKITTY IS ONLINE</p>
         <h2 id="entry-title">PIXIEKITTY</h2>
-        <p>a dreamy little machine is calling...</p>
-        <BubbleButton size="large" onClick={onEnter} autoFocus aria-label="Enter the Pixiekitty experience">
-          ENTER THE SIGNAL
+        <p>your favorite escape just called</p>
+        <BubbleButton size="large" onClick={onEnter} autoFocus aria-label="Enter Pixie Mode">
+          ENTER PIXIE MODE
         </BubbleButton>
         <span className="entry-gate__note">sound stays off · no surprises</span>
       </div>

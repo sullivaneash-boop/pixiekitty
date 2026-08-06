@@ -3,8 +3,8 @@ import { musicConfig } from "@/lib/music-config";
 export type Track = {
   artistName: string;
   title: string;
+  album: string;
   duration: string;
-  note: string;
 };
 
 export type ArchiveEntry = {
@@ -15,29 +15,27 @@ export type ArchiveEntry = {
   icon: string;
 };
 
-export type Show = {
-  date: string;
-  city: string;
-  venue: string;
-  note: string;
-  provisional: boolean;
-};
-
 export const site = {
   artist: "Pixiekitty",
-  eyebrow: "dream-pop transmission 001",
-  tagline: "A tiny machine for big feelings.",
+  year: "2026",
+  eyebrow: "your favorite escape just called",
+  positioning: [
+    "DREAMY POP FOR",
+    "LATE NIGHTS,",
+    "PRETTY CHAOS +",
+    "GIRLS WHO FEEL EVERYTHING.",
+  ],
+  tagline: "A tiny player for big feelings.",
   statement: [
-    "glitter on the outside",
-    "heartbreak in the circuitry",
-    "freedom at full volume",
+    "glitter with feelings",
+    "heartbreak you can dance to",
+    "freedom in hot pink",
   ],
   about:
-    "Pixiekitty makes dreamy pop for late nights, soft escapes, and the moment you choose yourself again.",
+    "Pixiekitty turns feelings into fantasy. Her world is dreamy, colorful, flirtatious and a little unreal, where beauty, heartbreak, freedom and desire can all exist at once.",
   release: {
-    title: "SUGAR RUSH",
+    title: "Sugar Rush",
     type: "official Apple preview",
-    year: "2026",
     links: [
       { label: "Apple Music", href: musicConfig.appleMusicAlbumUrl },
       { label: "Spotify", href: musicConfig.spotifyArtistUrl },
@@ -47,8 +45,8 @@ export const site = {
     {
       artistName: musicConfig.artistName,
       title: musicConfig.preferredTrackName,
-      duration: "00:30",
-      note: "official Apple preview",
+      album: "Sugar Rush",
+      duration: "2:23",
     },
   ] satisfies Track[],
   navigation: [
@@ -60,52 +58,46 @@ export const site = {
   ],
   archive: [
     {
-      id: "halo",
-      title: "Halo Test",
-      caption: "soft focus / hard feelings",
+      id: "after-dark",
+      title: "AFTER DARK",
+      caption: "late-night looks",
       variant: "halo",
       icon: "/assets/icons/butterfly-3d.webp",
     },
     {
-      id: "heartbreak",
-      title: "Heartbreak OS",
-      caption: "saved at 3:17 AM",
+      id: "pink-room",
+      title: "PINK ROOM",
+      caption: "all dressed up",
       variant: "heartbreak",
       icon: "/assets/icons/pixel-heart-3d.webp",
     },
     {
-      id: "night",
-      title: "Night Mode",
-      caption: "backstage signal study",
+      id: "soft-focus",
+      title: "SOFT FOCUS",
+      caption: "pretty in a blur",
       variant: "night",
       icon: "/assets/icons/lips-3d.webp",
     },
     {
-      id: "signal",
-      title: "Signal Bloom",
-      caption: "transmission still loading",
+      id: "sugar-rush",
+      title: "SUGAR RUSH",
+      caption: "sweet with an edge",
       variant: "signal",
       icon: "/assets/icons/burst-3d.webp",
     },
   ] satisfies ArchiveEntry[],
-  shows: [
-    {
-      date: "SOON",
-      city: "YOUR CITY",
-      venue: "signal not found yet",
-      note: "New live dates will appear here.",
-      provisional: true,
-    },
-  ] satisfies Show[],
+  live: {
+    eyebrow: "ADMIT ONE DREAMER",
+    artist: "PIXIEKITTY",
+    status: "DATES COMING SOON",
+    note: "New dates are coming. Stay close.",
+  },
   contact: {
-    email: "booking@pixiekitty.com",
+    email: "Pixiekitty@blissed.ski",
     label: "booking + collaborations",
-    provisional: true,
   },
   socials: [
-    { label: "Instagram", href: "https://www.instagram.com/" },
-    { label: "TikTok", href: "https://www.tiktok.com/" },
-    { label: "YouTube", href: "https://www.youtube.com/" },
+    { label: "Instagram", href: "https://www.instagram.com/pixiekitty555/" },
   ],
   assetPaths: {
     bow: "/assets/icons/bow-3d.webp",

@@ -28,18 +28,18 @@ export const metadata: Metadata = {
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
       : "http://localhost:3000",
   ),
-  title: "Pixiekitty — Enter the Signal",
-  description: "Step inside Pixiekitty’s dreamy pop transmission: music, visuals, live signals, and a tiny machine for big feelings.",
-  keywords: ["Pixiekitty", "pop artist", "dream pop", "music", "artist website"],
+  title: "Pixiekitty — Dreamy Pop for Pretty Chaos",
+  description: "Dreamy pop for late nights, pretty chaos, and girls who feel everything. Listen to Pixiedust from Sugar Rush.",
+  keywords: ["Pixiekitty", "Pixiedust", "Sugar Rush", "dreamy pop", "dance pop", "hyperpop"],
   openGraph: {
-    title: "Pixiekitty — Enter the Signal",
-    description: "A tiny machine for big feelings.",
+    title: "Pixiekitty — Dreamy Pop for Pretty Chaos",
+    description: "Dreamy pop for late nights, pretty chaos, and girls who feel everything.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pixiekitty — Enter the Signal",
-    description: "A tiny machine for big feelings.",
+    title: "Pixiekitty — Dreamy Pop for Pretty Chaos",
+    description: "Dreamy pop for late nights, pretty chaos, and girls who feel everything.",
   },
 };
 

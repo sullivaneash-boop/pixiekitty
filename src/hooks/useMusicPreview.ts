@@ -70,16 +70,16 @@ export function useMusicPreview() {
     const handleCanPlay = () => {
       syncDuration();
       setPlayerState((state) => (state === "loading" ? "ready" : state));
-      if (audio.paused) setMessage("Ready to play");
+      if (audio.paused) setMessage("Press play to preview");
     };
     const handlePlay = () => {
       setPlayerState("playing");
-      setMessage("Official preview playing");
+      setMessage("Preview playing");
     };
     const handlePause = () => {
       if (audio.ended) return;
       setPlayerState(audio.currentTime > 0 ? "paused" : "ready");
-      setMessage(audio.currentTime > 0 ? "Preview paused" : "Ready to play");
+      setMessage(audio.currentTime > 0 ? "Preview paused" : "Press play to preview");
     };
     const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
     const handleEnded = () => {

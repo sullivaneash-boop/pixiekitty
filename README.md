@@ -22,7 +22,7 @@ The project uses Next.js App Router, React, strict TypeScript, Tailwind CSS, aut
 
 ## Content replacement
 
-Edit `src/data/site.ts` to replace provisional visual archive entries, shows, booking details, and social links. Music identifiers and official destinations live in `src/lib/music-config.ts`. The custom player streams Apple&apos;s official 30-second preview of “Pixiedust” only after a user presses play; the audio is never downloaded or stored in this repository.
+Shared artist copy, the featured track, live-status text, booking details, and verified social destinations live in `src/data/site.ts`. Music identifiers and official streaming destinations live in `src/lib/music-config.ts`. The custom player streams Apple&apos;s official 30-second preview of “Pixiedust” only after a user presses play; the audio is never downloaded or stored in this repository.
 
 ## Music preview flow
 
